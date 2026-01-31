@@ -3,14 +3,35 @@ using UnityEngine.InputSystem;
 
 public class Shooter : MonoBehaviour
 {
-    public Transform FirePoint;
-    public float range = 100f;
-    public Camera mainCamera;
-    public int damage = 1;
+    [Header("Disparo")]
+    public Transform FirePoint;      
+    public float range = 100f;       
+    public int damage = 1;           
+
+    [Header("Cámara")]
+    public Camera mainCamera;        
+
+    [Header("Input")]
+    public InputActionReference shootAction; 
+
+    void Start()
+    {
+        if (shootAction != null)
+            shootAction.action.Enable();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        // Disparo con Input System
+        if (shootAction != null && shootAction.action.WasPressedThisFrame())
+        {
+            Shoot();
+        }
+        // Fallback ratón
+        else if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Shoot();
         }
@@ -18,7 +39,8 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+        // Raycast directo desde la cámara hacia adelante
+        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
 
         Vector3 targetPoint;
@@ -27,6 +49,7 @@ public class Shooter : MonoBehaviour
         {
             targetPoint = hit.point;
 
+            // Aplicar daño
             EnemyHealth enemy = hit.collider.GetComponentInParent<EnemyHealth>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
@@ -36,9 +59,8 @@ public class Shooter : MonoBehaviour
             targetPoint = ray.origin + ray.direction * range;
         }
 
+        // Dirección del disparo desde el FirePoint
         Vector3 shootDir = (targetPoint - FirePoint.position).normalized;
-
-        Debug.DrawRay(FirePoint.position, shootDir * range, Color.red, 0.1f);
     }
 
 }
