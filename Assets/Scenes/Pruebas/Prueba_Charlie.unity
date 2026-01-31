@@ -183,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c77eb810e8a0de147a0d7361e7444b96, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,7 +318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 51ad844c36f97cf4baa41821802209a0, type: 2}
+  - {fileID: 2100000, guid: 877d5f7fb798bd745a9736d89b11b287, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -384,6 +384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175001181}
   - component: {fileID: 1175001180}
+  - component: {fileID: 1175001182}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -468,6 +469,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1175001182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175001179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!4 &1180464753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7305416233055789304, guid: ed0d183cb26924c40ad1d76acd806c92, type: 3}
@@ -675,7 +699,7 @@ PrefabInstance:
     - target: {fileID: 866539901193444970, guid: ed0d183cb26924c40ad1d76acd806c92, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e3b43cdb23155a846bad3f7a923665f8, type: 2}
+      objectReference: {fileID: 2100000, guid: 877d5f7fb798bd745a9736d89b11b287, type: 2}
     - target: {fileID: 3147749124849970318, guid: ed0d183cb26924c40ad1d76acd806c92, type: 3}
       propertyPath: m_Name
       value: Player
@@ -723,6 +747,10 @@ PrefabInstance:
     - target: {fileID: 7305416233055789304, guid: ed0d183cb26924c40ad1d76acd806c92, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779770275260988866, guid: ed0d183cb26924c40ad1d76acd806c92, type: 3}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

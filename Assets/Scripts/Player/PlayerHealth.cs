@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthbar;
 
     public InputActionReference inputAction;
+    private PlayerDash playerDash;
 
 
     void Start()
@@ -23,20 +24,18 @@ public class PlayerHealth : MonoBehaviour
     {
         Vector2 movement = inputAction.action.ReadValue<Vector2>();
 
-        //if (movement.x >= 0)
-        //{
-        //    TakeDamage(2);
-        //}
     }
 
     public void TakeDamage(int damage)
     {
+        if (playerDash.IsInvincible) return;
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
             Debug.Log("Jugador muerto");
+            Destroy(gameObject);
         }
     }
 }
