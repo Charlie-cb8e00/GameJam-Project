@@ -301,7 +301,7 @@ PrefabInstance:
     - target: {fileID: 2677091100387222815, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: healthbar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1028787436}
     - target: {fileID: 6016426065163953485, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: m_Name
       value: Personaje
@@ -450,6 +450,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927433323}
   m_CullTransparentMesh: 1
+--- !u!114 &1028787436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2858075363494231666, guid: 53e1bc3720f7a9248811ed0bccf38fec, type: 3}
+  m_PrefabInstance: {fileID: 311427176}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74062585168d68944ae398037e001280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1100754564
 GameObject:
   m_ObjectHideFlags: 0
