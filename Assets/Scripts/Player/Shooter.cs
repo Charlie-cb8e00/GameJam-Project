@@ -1,18 +1,22 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Shooter : MonoBehaviour
 {
     [Header("Disparo")]
-    public Transform FirePoint;      
-    public float range = 100f;       
-    public int damage = 1;           
+    public Transform FirePoint;
+    public float range = 100f;
+    public int damage = 1;
+    public Animator animator;
 
-    [Header("Cámara")]
-    public Camera mainCamera;        
+    bool isShooting = false;
+
+    [Header("Cï¿½mara")]
+    public Camera mainCamera;
 
     [Header("Input")]
-    public InputActionReference shootAction; 
+    public InputActionReference shootAction;
 
     void Start()
     {
@@ -30,7 +34,7 @@ public class Shooter : MonoBehaviour
         {
             Shoot();
         }
-        // Fallback ratón
+        // Fallback ratï¿½n
         else if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Shoot();
@@ -39,7 +43,10 @@ public class Shooter : MonoBehaviour
 
     void Shoot()
     {
-        // Raycast directo desde la cámara hacia adelante
+        isShooting = true;
+        animator.SetBool("isShooting", isShooting);
+        StartCoroutine(shootingCooldown());
+        // Raycast directo desde la cï¿½mara hacia adelante
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
 
@@ -49,7 +56,7 @@ public class Shooter : MonoBehaviour
         {
             targetPoint = hit.point;
 
-            // Aplicar daño
+            // Aplicar daï¿½o
             EnemyHealth enemy = hit.collider.GetComponentInParent<EnemyHealth>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
@@ -59,8 +66,15 @@ public class Shooter : MonoBehaviour
             targetPoint = ray.origin + ray.direction * range;
         }
 
-        // Dirección del disparo desde el FirePoint
+        // Direcciï¿½n del disparo desde el FirePoint
         Vector3 shootDir = (targetPoint - FirePoint.position).normalized;
+    }
+    IEnumerator shootingCooldown()
+    {
+        yield return new WaitForSeconds(1);
+        isShooting = false;
+        animator.SetBool("isShooting", isShooting);
+        Debug.Log(isShooting);
     }
 
 }

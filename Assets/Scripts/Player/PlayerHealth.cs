@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 10;
     public int currentHealth;
     public HealthBar healthbar;
+    public bool isHurt = false;
+    public Animator animator;
 
     public InputActionReference inputAction;
 
@@ -26,6 +29,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        isHurt = true;
+        animator.SetBool("isHurt", isHurt);
+        StartCoroutine(hurtCooldown());
+
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
 
@@ -34,5 +41,12 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Jugador muerto");
             Destroy(gameObject);
         }
+    }
+    IEnumerator hurtCooldown()
+    {
+        yield return new WaitForSeconds(.5f);
+        isHurt = false;
+        animator.SetBool("isHurt", isHurt);
+        Debug.Log(isHurt);
     }
 }
