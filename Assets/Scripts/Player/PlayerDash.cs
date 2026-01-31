@@ -4,11 +4,9 @@ using System.Collections;
 
 public class PlayerDash : MonoBehaviour
 {
-    [Header("Referencias")]
     public PlayerMovement playerMovement;
-    public InputActionReference dashAction;         // ← asigna la acción de dash en el Inspector
+    public InputActionReference dashAction;
 
-    [Header("Dash Settings")]
     [SerializeField] private float dashSpeed = 110f;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.9f;
