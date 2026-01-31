@@ -8,6 +8,7 @@ public class Shooter : MonoBehaviour
     public Transform FirePoint;
     public float range = 100f;
     public Camera mainCamera;
+    public int damage = 1;
 
     void Update()
     {
@@ -31,6 +32,12 @@ public class Shooter : MonoBehaviour
         if (impacta)
         {
             Debug.Log("Impacta con: " + hit.collider.name);
+
+            EnemyHealth enemy = hit.collider.GetComponentInParent<EnemyHealth>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
         }
         else
         {

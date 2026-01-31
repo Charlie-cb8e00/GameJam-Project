@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 1;  // vida inicial
-    private int currentHealth;
+    public int maxHealth = 1; 
+    public int currentHealth;
 
     void Awake()
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; 
     }
 
-    // Llamamos a este método para que el enemigo reciba daño
-    public void TakeDamage(int damage)
+    
+    public void TakeDamage(int damage = 1)
     {
         currentHealth -= damage;
         Debug.Log(gameObject.name + " ha recibido " + damage + " de daño. Vida restante: " + currentHealth);
@@ -27,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         Debug.Log(gameObject.name + " ha muerto.");
-        Destroy(gameObject); // destruye el objeto enemigo
+        Destroy(gameObject);
     }
+
 }
