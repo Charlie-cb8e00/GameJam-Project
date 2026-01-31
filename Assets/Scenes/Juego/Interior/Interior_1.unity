@@ -298,6 +298,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2555876962263692060, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
+      propertyPath: dashSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2677091100387222815, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: healthbar
       value: 
