@@ -12,36 +12,33 @@ public class Shooter : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Shooting();
+            Shoot();
         }
     }
 
-    void Shooting()
+    void Shoot()
     {
+        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f));
         RaycastHit hit;
 
-        Ray mouseRay = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        Cursor.visible = false;
+        Vector3 targetPoint;
 
-        bool impacta = Physics.Raycast(mouseRay, out hit, range);
-
-        Vector3 drawDirection = (impacta ? hit.point : mouseRay.origin + mouseRay.direction * range) - FirePoint.position;
-        Debug.DrawRay(FirePoint.position, drawDirection, Color.red, 0.1f);
-
-        if (impacta)
+        if (Physics.Raycast(ray, out hit, range))
         {
-            Debug.Log("Impacta con: " + hit.collider.name);
+            targetPoint = hit.point;
 
             EnemyHealth enemy = hit.collider.GetComponentInParent<EnemyHealth>();
             if (enemy != null)
-            {
                 enemy.TakeDamage(damage);
-            }
         }
         else
         {
-            Debug.Log("No impacta con nada.");
+            targetPoint = ray.origin + ray.direction * range;
         }
+
+        Vector3 shootDir = (targetPoint - FirePoint.position).normalized;
+
+        Debug.DrawRay(FirePoint.position, shootDir * range, Color.red, 0.1f);
     }
 
 }
