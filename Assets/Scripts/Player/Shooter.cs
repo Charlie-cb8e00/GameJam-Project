@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +21,7 @@ public class Shooter : MonoBehaviour
         RaycastHit hit;
 
         Ray mouseRay = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Cursor.visible = true;
 
         bool impacta = Physics.Raycast(mouseRay, out hit, range);
 
