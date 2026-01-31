@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
         isHurt = true;
         animator.SetBool("isHurt", isHurt);
         StartCoroutine(hurtCooldown());
-        animator.SetBool("isHurt", isHurt);
+
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
 
@@ -46,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         isHurt = false;
+        animator.SetBool("isHurt", isHurt);
         Debug.Log(isHurt);
     }
 }

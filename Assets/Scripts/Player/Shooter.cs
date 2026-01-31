@@ -46,7 +46,6 @@ public class Shooter : MonoBehaviour
         isShooting = true;
         animator.SetBool("isShooting", isShooting);
         StartCoroutine(shootingCooldown());
-        animator.SetBool("isShooting", isShooting);
         // Raycast directo desde la c�mara hacia adelante
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
@@ -74,6 +73,7 @@ public class Shooter : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         isShooting = false;
+        animator.SetBool("isShooting", isShooting);
         Debug.Log(isShooting);
     }
 
