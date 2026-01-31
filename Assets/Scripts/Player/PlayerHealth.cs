@@ -22,11 +22,6 @@ public class PlayerHealth : MonoBehaviour
     public void Update()
     {
         Vector2 movement = inputAction.action.ReadValue<Vector2>();
-
-        //if (movement.x >= 0)
-        //{
-        //    TakeDamage(2);
-        //}
     }
 
     public void TakeDamage(int damage)
@@ -37,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Jugador muerto");
+            Destroy(gameObject);
         }
     }
 }
