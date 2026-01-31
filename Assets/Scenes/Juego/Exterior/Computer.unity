@@ -10608,6 +10608,14 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3684311645797133327, guid: b92715d773178854d9fc73f5cf45edef, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684311645797133327, guid: b92715d773178854d9fc73f5cf45edef, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 4964943837736869927, guid: b92715d773178854d9fc73f5cf45edef, type: 3}
       propertyPath: m_Name
       value: LevelLoader
