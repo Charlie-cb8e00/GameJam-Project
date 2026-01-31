@@ -9,7 +9,6 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar healthbar;
 
     public InputActionReference inputAction;
-    private PlayerDash playerDash;
 
 
     void Start()
@@ -27,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (playerDash.IsInvincible) return;
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
 
