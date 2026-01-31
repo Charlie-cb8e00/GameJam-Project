@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxLives = 5;
-    private int currentLives;
+    int currentLives;
 
     void Start()
     {
@@ -15,17 +15,11 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentLives -= damage;
-        Debug.Log("Vidas restantes: " + currentLives);
+        Debug.Log("Vidas: " + currentLives);
 
         if (currentLives <= 0)
         {
-            Die();
+            Debug.Log("Jugador muerto");
         }
-    }
-
-    void Die()
-    {
-        Debug.Log("Jugador muerto");
-        // Aquí luego: reiniciar nivel o game over
     }
 }

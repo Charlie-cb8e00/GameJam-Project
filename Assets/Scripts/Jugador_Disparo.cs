@@ -4,34 +4,20 @@ using UnityEngine;
 
 public class Jugador_Disparo : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float range = 100f;
+    public Transform FirePoint;
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
+        Shooting();
     }
 
-    void Shoot()
+    public void Shooting()
     {
-        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, range))
+        if (Physics.Raycast (FirePoint.position, transform.TransformDirection (Vector3.forward),out hit, 100))
         {
-            Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
-
-            if (hit.collider.CompareTag("WeakPoint"))
-            {
-                EnemyHealth enemy = hit.collider.GetComponentInParent<EnemyHealth>();
-                if (enemy != null)
-                {
-                    enemy.Die();
-                }
-            }
+            Debug.DrawRay(FirePoint.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
         }
     }
 }

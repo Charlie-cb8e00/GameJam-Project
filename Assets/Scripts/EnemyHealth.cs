@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int life = 1;
+    public int maxLife = 1;
+    int currentLife;
 
-    public void Die()
+    void Start()
     {
-        Destroy(gameObject);
+        currentLife = maxLife;
+    }
+
+    public void TakeDamage(int damage = 1)
+    {
+        currentLife -= damage;
+
+        if (currentLife <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
