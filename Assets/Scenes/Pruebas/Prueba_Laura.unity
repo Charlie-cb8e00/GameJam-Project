@@ -252,10 +252,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 199841601}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec05c631e4ea7ef4d8d8ed3a001d5b90, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b179e0b36fdbfe4d98eca5a5359e156, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FirePoint: {fileID: 1086317312}
+  range: 100
+  mainCamera: {fileID: 340771384}
 --- !u!1 &340771382
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,13 +343,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340771382}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.6814198, z: -0, w: 0.7318929}
-  m_LocalPosition: {x: 3.61, y: 1.3, z: 0.09}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 5.02, y: 3.12, z: 0.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -85.909, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1038283628
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd9b19fbb209d043a5f165dbb477a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 1
+  maxHealth: 1
 --- !u!1 &1086317311
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd9b19fbb209d043a5f165dbb477a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 1
+  maxHealth: 1
 --- !u!1 &1100754564
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd9b19fbb209d043a5f165dbb477a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 1
+  maxHealth: 1
 --- !u!1 &1769825353
 GameObject:
   m_ObjectHideFlags: 0
