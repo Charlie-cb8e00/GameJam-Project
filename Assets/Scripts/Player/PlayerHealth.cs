@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -39,9 +41,10 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Jugador muerto");
-            Destroy(gameObject);
+            SceneManager.LoadScene("Game_Over");
         }
     }
+    
     IEnumerator hurtCooldown()
     {
         yield return new WaitForSeconds(.5f);
