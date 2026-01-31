@@ -7,19 +7,19 @@ public class MouseCamera : MonoBehaviour
     public Vector2 turn;
     public InputActionReference input;
     public float sensitivity = .5f;
-    public Texture2D mouseTexture;
+
 
     void Start()
     {
         input.action.Enable();
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
 
 
     void Update()
     {
-        Cursor.SetCursor(mouseTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
         Vector2 moveMouse = input.action.ReadValue<Vector2>();
         turn.x += moveMouse.x * sensitivity;
         turn.y += moveMouse.y * sensitivity;
