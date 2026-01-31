@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public InputActionReference inputAction;
-    public int moveSpeed = 500;
+    public int moveSpeed = 150;
     public Rigidbody player;
 
 
