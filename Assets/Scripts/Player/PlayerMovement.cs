@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static UnityEditor.Rendering.FilterWindow;
 
 public class PlayerMovement : MonoBehaviour
@@ -40,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDir = camForward * verInput + camRight * horInput;
 
         player.MovePosition(player.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Mascara"))
+        {
+            SceneManager.LoadScene("Game_Win");
+        }
     }
 }
 
