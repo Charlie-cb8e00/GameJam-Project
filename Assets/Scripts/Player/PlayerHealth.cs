@@ -1,23 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxLives = 5;
-    int currentLives;
+    public int maxHealth = 10;
+    public int currentHealth;
+    public HealthBar healthbar;
+
+    public InputActionReference inputAction;
 
     void Start()
     {
-        currentLives = maxLives;
+        currentHealth = maxHealth;
+        healthbar.setMaxHealth(maxHealth);
+
+        inputAction.action.Enable();
+    }
+
+    public void Update()
+    {
+        Vector2 movement = inputAction.action.ReadValue<Vector2>();
+
+        //if (movement.x >= 0)
+        //{
+        //    TakeDamage(2);
+        //}
     }
 
     public void TakeDamage(int damage)
     {
-        currentLives -= damage;
-        Debug.Log("Vidas: " + currentLives);
+        currentHealth -= damage;
+        healthbar.SetHealth(currentHealth);
 
-        if (currentLives <= 0)
+        if (currentHealth <= 0)
         {
             Debug.Log("Jugador muerto");
         }

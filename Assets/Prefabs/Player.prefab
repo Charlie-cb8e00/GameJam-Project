@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8071837342077476291}
   - component: {fileID: 7779770275260988866}
   - component: {fileID: 8983330363657049549}
+  - component: {fileID: 6160926859807193749}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e3b43cdb23155a846bad3f7a923665f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -149,3 +150,19 @@ MonoBehaviour:
   inputAction: {fileID: -4086143441962657859, guid: 5d246aaf36958954e866f68e6a9cd5d4, type: 3}
   moveSpeed: 150
   player: {fileID: 7779770275260988866}
+--- !u!114 &6160926859807193749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147749124849970318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 978ad1a4c9d99a74cb93d9d2d4bce0ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  healthbar: {fileID: 0}
+  inputAction: {fileID: -4086143441962657859, guid: 5d246aaf36958954e866f68e6a9cd5d4, type: 3}
