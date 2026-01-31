@@ -21,7 +21,7 @@ public class Shooter : MonoBehaviour
         RaycastHit hit;
 
         Ray mouseRay = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        Cursor.visible = true;
+        Cursor.visible = false;
 
         bool impacta = Physics.Raycast(mouseRay, out hit, range);
 
