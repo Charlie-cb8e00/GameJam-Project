@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -25,13 +26,13 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int z = 0; z < _mazeDepth; z++)
             {
-                _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity);
+                _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3(x, 0, z), Quaternion.identity,transform);
+                _mazeGrid[x, z].transform.localPosition = new Vector3(x, 0, z);
             }
         }
 
-        // Generar laberinto desde la esquina inferior izquierda
         GenerateMaze(_mazeGrid[0, 0]);
-
+        GetComponent<NavMeshSurface>().BuildNavMesh();
         
     }
 
@@ -59,8 +60,8 @@ public class MazeGenerator : MonoBehaviour
 
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
     {
-        int x = (int)currentCell.transform.position.x;
-        int z = (int)currentCell.transform.position.z;
+        int x = (int)currentCell.transform.localPosition.x;
+        int z = (int)currentCell.transform.localPosition.z;
 
         if (x + 1 < _mazeWidth && !_mazeGrid[x + 1, z].IsVisited)
             yield return _mazeGrid[x + 1, z];
@@ -74,25 +75,25 @@ public class MazeGenerator : MonoBehaviour
 
     private void ClearWalls(MazeCell current, MazeCell next)
     {
-        if (current.transform.position.x < next.transform.position.x)
+        if (current.transform.localPosition.x < next.transform.localPosition.x)
         {
             current.ClearRightWall();
             next.ClearLeftWall();
             return;
         }
-        if (current.transform.position.x > next.transform.position.x)
+        if (current.transform.localPosition.x > next.transform.localPosition.x)
         {
             current.ClearLeftWall();
             next.ClearRightWall();
             return;
         }
-        if (current.transform.position.z < next.transform.position.z)
+        if (current.transform.localPosition.z < next.transform.localPosition.z)
         {
             current.ClearFrontWall();
             next.ClearBackWall();
             return;
         }
-        if (current.transform.position.z > next.transform.position.z)
+        if (current.transform.localPosition.z > next.transform.localPosition.z)
         {
             current.ClearBackWall();
             next.ClearFrontWall();
