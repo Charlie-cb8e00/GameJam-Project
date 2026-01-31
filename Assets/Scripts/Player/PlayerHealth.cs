@@ -23,7 +23,6 @@ public class PlayerHealth : MonoBehaviour
     public void Update()
     {
         Vector2 movement = inputAction.action.ReadValue<Vector2>();
-
     }
 
     public void TakeDamage(int damage)
