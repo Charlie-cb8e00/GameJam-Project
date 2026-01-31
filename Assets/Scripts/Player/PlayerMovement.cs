@@ -43,10 +43,11 @@ public class PlayerMovement : MonoBehaviour
         player.MovePosition(player.position + moveDir * moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Mascara"))
+        if (other.CompareTag("Mascara"))
         {
+            Debug.Log("Mascara");
             SceneManager.LoadScene("Game_Win");
         }
     }
