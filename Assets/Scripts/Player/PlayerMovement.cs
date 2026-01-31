@@ -1,4 +1,4 @@
-
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +23,5 @@ public class PlayerMovement : MonoBehaviour
         player.AddForce(movement.x, 0, movement.y);
 
     }
-
 }
 
