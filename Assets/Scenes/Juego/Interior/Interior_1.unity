@@ -296,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 1484705698}
     - target: {fileID: 1777606804643013448, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2677091100387222815, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: healthbar
@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713872341566957360, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
