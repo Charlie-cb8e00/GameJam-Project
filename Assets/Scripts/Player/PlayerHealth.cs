@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
 
     public InputActionReference inputAction;
 
+
     void Start()
     {
         currentHealth = maxHealth;
