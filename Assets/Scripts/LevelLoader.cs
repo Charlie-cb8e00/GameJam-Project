@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
+    public InputActionReference clicAction;
     public float transitionTime = 1f;
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (clicAction.action.IsPressed())
         {
             LoadNextLevel();
         }
