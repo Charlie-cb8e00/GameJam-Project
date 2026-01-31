@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy_1 : MonoBehaviour
 {
-    //public float velocidad = 6f;
     public Transform jugador;
     public float attackRange = 2f;
     public int damage = 1;
@@ -19,7 +18,6 @@ public class Enemy_1 : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //agent.speed = velocidad;
 
         jugador = GameObject.FindGameObjectWithTag("Player").transform;
         lastAttackTime = -attackCooldown;

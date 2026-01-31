@@ -1,35 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_2 : MonoBehaviour
 {
-    public float velocidad = 3f;
     public Transform jugador;
     public float attackRange = 10f;
     public int damage = 1;
     public float attackCooldown = 5f;
     public float attackDuration = 0.3f;
 
-    private Rigidbody rb;
+    private NavMeshAgent agent;
     private float lastAttackTime;
     private bool isAttacking = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
+
         jugador = GameObject.FindGameObjectWithTag("Player").transform;
         lastAttackTime = -attackCooldown;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (jugador == null) return;
 
         if (!isAttacking)
         {
-            Vector3 direccion = (jugador.position - transform.position).normalized;
-            rb.MovePosition(rb.position + direccion * velocidad * Time.fixedDeltaTime);
+            agent.SetDestination(jugador.position);
         }
 
         float distancia = Vector3.Distance(transform.position, jugador.position);
@@ -44,8 +44,10 @@ public class Enemy_2 : MonoBehaviour
     {
         isAttacking = true;
 
-        RaycastHit hit;
+        agent.isStopped = true;
+
         Vector3 direction = (jugador.position - transform.position).normalized;
+        RaycastHit hit;
 
         if (Physics.Raycast(transform.position, direction, out hit, attackRange))
         {
@@ -60,6 +62,7 @@ public class Enemy_2 : MonoBehaviour
         yield return new WaitForSeconds(attackDuration);
 
         isAttacking = false;
+        agent.isStopped = false;
     }
 
     void OnDrawGizmosSelected()
