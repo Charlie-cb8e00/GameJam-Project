@@ -5,27 +5,45 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public AudioSource buttonSound;
+    public float delay = 0.3f;
+
     public void Jugar()
     {
-        SceneManager.LoadScene("Computer");
+        StartCoroutine(LoadSceneDelay("Computer"));
     }
 
     public void Tutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        StartCoroutine(LoadSceneDelay("Tutorial"));
+    }
+
+    public void Creditos()
+    {
+        StartCoroutine(LoadSceneDelay("Creditos"));
+    }
+
+    public void Opciones()
+    {
+        StartCoroutine(LoadSceneDelay("Opciones"));
     }
 
     public void Salir()
     {
+        buttonSound.Play();
+        Invoke(nameof(QuitGame), delay);
+    }
+
+    IEnumerator LoadSceneDelay(string sceneName)
+    {
+        buttonSound.Play();
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
+    }
+
+    void QuitGame()
+    {
         Application.Quit();
         Debug.Log("Has salido del juego");
-    }
-    public void Creditos()
-    {
-        SceneManager.LoadScene("Creditos");
-    }
-    public void Opciones()
-    {
-        SceneManager.LoadScene("Opciones");
     }
 }
