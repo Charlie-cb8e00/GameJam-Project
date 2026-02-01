@@ -4,100 +4,49 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private GameObject pauseMenuPanel;
-    [SerializeField] private GameObject container;
+    public GameObject pausePanel;
 
-    [Header("Input")]
-    [SerializeField] private InputActionReference pauseAction;
+    private bool isPaused = false;
 
-    [Header("Player Input (Optional)")]
-    [SerializeField] private PlayerInput playerInput;  // Drag PlayerInput for action map switching
-
-    public static bool GameIsPaused = false;
-
-    private void Awake()
+    void Start()
     {
-        // ← AQUÍ: Ocultamos TODO al inicio (desaparece por defecto)
-        pauseMenuPanel?.SetActive(false);
-        container?.SetActive(false);
-        pauseMenuPanel.SetActive(true);
-    }
-
-    private void OnEnable()
-    {
-        if (pauseAction?.action != null)
-        {
-            pauseAction.action.Enable();
-            pauseAction.action.performed += OnPausePerformed;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (pauseAction?.action != null)
-        {
-            pauseAction.action.performed -= OnPausePerformed;
-            pauseAction.action.Disable();
-        }
-    }
-
-    private void OnPausePerformed(InputAction.CallbackContext context)
-    {
-        if (GameIsPaused)
-        {
-            Resume();
-        }
-        else
-        {
-            Pause();
-        }
-    }
-
-    public void Pause()
-    {
-        pauseMenuPanel.SetActive(true);
-        container.SetActive(true);  // ← MUESTRA el contenedor al pausar (Escape)
-
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-
-        // Switch to UI action map if PlayerInput assigned
-        playerInput?.SwitchCurrentActionMap("UI");
-
-        // Unlock & show cursor
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    public void Resume()
-    {
-        pauseMenuPanel.SetActive(false);
-        container.SetActive(false);
-        pauseMenuPanel.SetActive(true);
-
+        pausePanel.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
-
-        // Switch back to Player map
-        playerInput?.SwitchCurrentActionMap("Player");
-
-        // Lock & hide cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
-    // Call from UI Buttons (OnClick)
+    void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            TogglePause();
+        }
+    }
+
+    void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        pausePanel.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0f : 1f;
+    }
+
+
     public void Continuar()
     {
-        Resume();
+        isPaused = false;
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
     }
-    public void irAlMenu()
+
+    public void IrAlMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
+
     public void Salir()
     {
+        Time.timeScale = 1f;
         Application.Quit();
     }
 }
