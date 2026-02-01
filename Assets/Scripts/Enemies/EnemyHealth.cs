@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -8,8 +10,18 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public bool isHurt = false;
     public Animator animator;
+    public Slider barraVida;
 
     //public GameObject trailGO;
+
+    private void Start()
+    {
+        if (barraVida != null)
+        {
+            barraVida.maxValue = maxHealth;
+            barraVida.value = currentHealth;
+        }
+    }
 
     void Awake()
     {
@@ -20,6 +32,9 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage = 1)
     {
         currentHealth -= damage;
+        if (barraVida != null)
+            barraVida.value = currentHealth;
+
         isHurt = true;
         animator.SetBool("isHurt", isHurt);
         StartCoroutine(hurtCooldown());
