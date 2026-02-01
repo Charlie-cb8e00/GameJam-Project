@@ -8,7 +8,7 @@ public class Enemy_3 : MonoBehaviour
     [Header("Stats")]
     public int damage = 3;
     public float pushForce = 1f;          // Ajusta la distancia del empuje
-    public float pushDuration = 0.2f;     // Duración del empuje
+    public float pushDuration = 0.2f;     // Duraciï¿½n del empuje
     public float attackCooldown = 1.5f;
     public float attackDuration = 0.3f;
     public float recoveryTime = 1.0f;
@@ -17,6 +17,7 @@ public class Enemy_3 : MonoBehaviour
     private Transform jugador;
     private float lastAttackTime;
     private bool isAttacking = false;
+    public Animator animator;
 
     void Start()
     {
@@ -46,12 +47,13 @@ public class Enemy_3 : MonoBehaviour
             StartCoroutine(AttackPlayerSafe(playerRb));
 
         lastAttackTime = Time.time;
-        Debug.Log("Enemigo ataca y hace " + damage + " de daño");
+        Debug.Log("Enemigo ataca y hace " + damage + " de daï¿½o");
     }
 
     IEnumerator AttackPlayerSafe(Rigidbody playerRb)
     {
         isAttacking = true;
+        animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = true;
 
         Vector3 pushDir = (playerRb.position - transform.position).normalized;
@@ -72,5 +74,6 @@ public class Enemy_3 : MonoBehaviour
 
         agent.isStopped = false;
         isAttacking = false;
+        animator.SetBool("isAttacking", isAttacking);
     }
 }

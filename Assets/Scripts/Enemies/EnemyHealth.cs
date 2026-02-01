@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
     public bool isHurt = false;
     public Animator animator;
 
+    //public GameObject trailGO;
+
     void Awake()
     {
         currentHealth = maxHealth;
@@ -22,6 +24,8 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("isHurt", isHurt);
         StartCoroutine(hurtCooldown());
         Debug.Log(gameObject.name + " ha recibido " + damage + " de da�o. Vida restante: " + currentHealth);
+        //partículas
+        //GameObject go = Instantiate(trailGO, this.gameObject.transform.position, Quaternion.identity);
 
         if (currentHealth <= 0)
         {

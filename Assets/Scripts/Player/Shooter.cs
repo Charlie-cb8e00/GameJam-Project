@@ -18,6 +18,7 @@ public class Shooter : MonoBehaviour
     [Header("Input")]
     public InputActionReference shootAction;
 
+    public GameObject trailGO;
     void Start()
     {
         if (shootAction != null)
@@ -50,7 +51,7 @@ public class Shooter : MonoBehaviour
         Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         RaycastHit hit;
 
-        Vector3 targetPoint;
+        Vector3 targetPoint = mainCamera.transform.forward;
 
         if (Physics.Raycast(ray, out hit, range))
         {
@@ -68,6 +69,7 @@ public class Shooter : MonoBehaviour
 
         // Direcci�n del disparo desde el FirePoint
         Vector3 shootDir = (targetPoint - FirePoint.position).normalized;
+        ShootVFX(shootDir);
     }
     IEnumerator shootingCooldown()
     {
@@ -76,5 +78,11 @@ public class Shooter : MonoBehaviour
         animator.SetBool("isShooting", isShooting);
         Debug.Log(isShooting);
     }
+    void ShootVFX(Vector3 shootDir)
+    {
+        GameObject go = Instantiate(trailGO, FirePoint.position, Quaternion.identity);
+        go.transform.LookAt(shootDir);
+        // go.transform.localEulerAngles = shootDir;
 
+    }
 }
