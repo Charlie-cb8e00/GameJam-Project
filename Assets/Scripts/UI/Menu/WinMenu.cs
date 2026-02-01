@@ -8,6 +8,12 @@ public class WinMenu : MonoBehaviour
     public AudioSource buttonSound;
     public float delay = 0.3f;
 
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void VolverMenu()
     {
         StartCoroutine(LoadSceneDelay("Menu"));
