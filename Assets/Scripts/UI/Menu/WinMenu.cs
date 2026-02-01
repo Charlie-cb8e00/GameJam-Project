@@ -26,7 +26,7 @@ public class WinMenu : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void QuitGame()
+    void QuitGame()
     {
         Application.Quit();
         Debug.Log("Has salido del juego");

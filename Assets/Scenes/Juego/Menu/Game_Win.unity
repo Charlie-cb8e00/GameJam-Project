@@ -1050,6 +1050,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1327822218853472965, guid: dd6e65921ad6a4040baa9ec2ce9a4f8a, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327822218853472965, guid: dd6e65921ad6a4040baa9ec2ce9a4f8a, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 4c35aa755c254a3408abd38d3d9a689b, type: 3}
@@ -1844,7 +1848,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 518104228}
         m_TargetAssemblyTypeName: WinMenu, Assembly-CSharp
-        m_MethodName: Salir
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
