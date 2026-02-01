@@ -88,7 +88,16 @@ public class PauseMenu : MonoBehaviour
     }
 
     // Call from UI Buttons (OnClick)
-    public void Continuar() => Resume();
-    public void irAlMenu() => SceneManager.LoadScene("Menu");
-    public void Salir() => Application.Quit();
+    public void Continuar()
+    {
+        Resume();
+    }
+    public void irAlMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public void Salir()
+    {
+        Application.Quit();
+    }
 }
