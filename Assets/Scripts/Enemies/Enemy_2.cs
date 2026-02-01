@@ -15,6 +15,7 @@ public class Enemy_2 : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking = false;
     public Animator animator;
+    public AudioSource buttonSound;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class Enemy_2 : MonoBehaviour
     IEnumerator RangedAttack()
     {
         isAttacking = true;
+        buttonSound.Play();
         animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = true;
 
