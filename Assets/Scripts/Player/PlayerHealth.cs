@@ -38,7 +38,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
 
-        if (currentHealth <= 1.5)
+        if (currentHealth <= 2)
         {
             Debug.Log("Jugador muerto");
             SceneManager.LoadScene("Game_Over");
