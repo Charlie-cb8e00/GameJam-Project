@@ -1,54 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy_3 : MonoBehaviour
 {
-    public float velocidad = 2f;
-    public float pushForce = 12f;
+    [Header("Stats")]
     public int damage = 3;
+    public float pushForce = 1f;          // Ajusta la distancia del empuje
+    public float pushDuration = 0.2f;     // Duración del empuje
     public float attackCooldown = 1.5f;
+    public float attackDuration = 0.3f;
+    public float recoveryTime = 1.0f;
 
-    private Rigidbody rb;
+    private NavMeshAgent agent;
     private Transform jugador;
     private float lastAttackTime;
+    private bool isAttacking = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        jugador = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        jugador = GameObject.FindGameObjectWithTag("Player")?.transform;
         lastAttackTime = -attackCooldown;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (jugador == null) return;
-
-        Vector3 direccion = (jugador.position - transform.position).normalized;
-        rb.MovePosition(rb.position + direccion * velocidad * Time.fixedDeltaTime);
+        if (jugador == null || isAttacking) return;
+        agent.SetDestination(jugador.position);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (!collision.collider.CompareTag("Player")) return;
-
-        if (Time.time < lastAttackTime + attackCooldown) return;
+        if (Time.time < lastAttackTime + attackCooldown || isAttacking) return;
 
         Rigidbody playerRb = collision.collider.GetComponent<Rigidbody>();
         PlayerHealth playerHealth = collision.collider.GetComponent<PlayerHealth>();
 
-        if (playerRb != null)
-        {
-            Vector3 pushDir = (collision.transform.position - transform.position).normalized;
-            playerRb.AddForce(pushDir * pushForce, ForceMode.Impulse);
-        }
-
         if (playerHealth != null)
-        {
             playerHealth.TakeDamage(damage);
-        }
+
+        if (playerRb != null)
+            StartCoroutine(AttackPlayerSafe(playerRb));
 
         lastAttackTime = Time.time;
-        Debug.Log("Enemigo empuja y hace " + damage + " de daño");
+        Debug.Log("Enemigo ataca y hace " + damage + " de daño");
+    }
+
+    IEnumerator AttackPlayerSafe(Rigidbody playerRb)
+    {
+        isAttacking = true;
+        agent.isStopped = true;
+
+        Vector3 pushDir = (playerRb.position - transform.position).normalized;
+        float elapsed = 0f;
+        float speed = pushForce / pushDuration;
+
+        while (elapsed < pushDuration)
+        {
+            // MovePosition respeta colisiones
+            Vector3 newPos = playerRb.position + pushDir * speed * Time.fixedDeltaTime;
+            playerRb.MovePosition(newPos);
+
+            elapsed += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        yield return new WaitForSeconds(attackDuration + recoveryTime);
+
+        agent.isStopped = false;
+        isAttacking = false;
     }
 }
