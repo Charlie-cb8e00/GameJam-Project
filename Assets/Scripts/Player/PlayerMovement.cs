@@ -50,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Mascara");
             SceneManager.LoadScene("Game_Win");
         }
+
+        if (other.CompareTag("Muerte"))
+        {
+            Debug.Log("Muerte");
+            SceneManager.LoadScene("Game_Over");
+        }
     }
 }
 
