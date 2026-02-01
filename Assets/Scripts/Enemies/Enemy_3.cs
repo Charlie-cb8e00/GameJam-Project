@@ -18,6 +18,7 @@ public class Enemy_3 : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking = false;
     public Animator animator;
+    public AudioSource buttonSound;
 
     void Start()
     {
@@ -53,6 +54,7 @@ public class Enemy_3 : MonoBehaviour
     IEnumerator AttackPlayerSafe(Rigidbody playerRb)
     {
         isAttacking = true;
+        buttonSound.Play();
         animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = true;
 

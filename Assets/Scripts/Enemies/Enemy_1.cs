@@ -10,6 +10,7 @@ public class Enemy_1 : MonoBehaviour
     public int damage = 1;
     public float attackCooldown = 1f;
     public float attackDuration = 0.3f;
+    public AudioSource buttonSound;
 
     private NavMeshAgent agent;
     private float lastAttackTime;
@@ -44,6 +45,7 @@ public class Enemy_1 : MonoBehaviour
     IEnumerator MeleeAttack()
     {
         isAttacking = true;
+        buttonSound.Play();       //sonido de ataque
         animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = true;
 

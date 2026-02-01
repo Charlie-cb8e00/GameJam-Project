@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public bool isHurt = false;
     public Animator animator;
     public Slider barraVida;
+    public AudioSource buttonSound;
 
     //public GameObject trailGO;
 
@@ -36,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
             barraVida.value = currentHealth;
 
         isHurt = true;
+        buttonSound.Play();
         animator.SetBool("isHurt", isHurt);
         StartCoroutine(hurtCooldown());
         Debug.Log(gameObject.name + " ha recibido " + damage + " de da�o. Vida restante: " + currentHealth);
