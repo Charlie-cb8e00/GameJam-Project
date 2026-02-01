@@ -7,6 +7,10 @@ public class MainMenu : MonoBehaviour
 {
     public AudioSource buttonSound;
     public float delay = 0.3f;
+    public void PrimerNivel()
+    {
+        StartCoroutine(LoadSceneDelay("Interior_1"));
+    }
 
     public void Jugar()
     {

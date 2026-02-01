@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Juego/Interior/Interior_2.unity
     guid: 62568dce9fad2604b8f28b062b7088d1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Juego/Interior/Interior_3.unity
     guid: 72d39eb673e991743b1798692b4822ac
   - enabled: 1
