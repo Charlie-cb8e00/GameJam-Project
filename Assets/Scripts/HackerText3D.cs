@@ -25,7 +25,7 @@ public class HackerText3D : MonoBehaviour
             while (randomCount < 5)
             {
                 _text.text = RandomizeText(_defaultText, letterIndex);
-                yield return new WaitForSeconds(0.15f);
+                yield return new WaitForSeconds(0.1f);
                 randomCount++;
             }
             letterIndex++;
