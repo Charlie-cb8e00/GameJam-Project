@@ -4,49 +4,62 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel;
+    public GameObject menuPausa;  
 
-    private bool isPaused = false;
+    private bool estaEnPausa = false; 
 
     void Start()
     {
-        pausePanel.SetActive(false);
+        menuPausa.SetActive(false);   
         Time.timeScale = 1f;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            TogglePause();
+            if (!estaEnPausa)
+                Pausa();
+            else
+                Reanudar();
         }
     }
 
-    void TogglePause()
+    public void Pausa()
     {
-        isPaused = !isPaused;
+        Time.timeScale = 0f;
+        menuPausa.SetActive(true);
+        estaEnPausa = true;
 
-        pausePanel.SetActive(isPaused);
-        Time.timeScale = isPaused ? 0f : 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
-
-    public void Continuar()
+    public void Reanudar()
     {
-        isPaused = false;
-        pausePanel.SetActive(false);
         Time.timeScale = 1f;
+        menuPausa.SetActive(false);
+        estaEnPausa = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void IrAlMenu()
+    
+
+    public void VolverMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
 
-    public void Salir()
+    public void QuitarJuego()
     {
         Time.timeScale = 1f;
         Application.Quit();
+        Debug.Log("Se ha cerrado");
     }
 }
