@@ -14,6 +14,7 @@ public class Enemy_2 : MonoBehaviour
     private NavMeshAgent agent;
     private float lastAttackTime;
     private bool isAttacking = false;
+    public Animator animator;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class Enemy_2 : MonoBehaviour
     IEnumerator RangedAttack()
     {
         isAttacking = true;
-
+        animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = true;
 
         Vector3 direction = (jugador.position - transform.position).normalized;
@@ -55,13 +56,14 @@ public class Enemy_2 : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 hit.collider.GetComponent<PlayerHealth>()?.TakeDamage(damage);
-                Debug.Log("Jugador recibe " + damage + " de daño por disparo enemigo.");
+                Debug.Log("Jugador recibe " + damage + " de daï¿½o por disparo enemigo.");
             }
         }
 
         yield return new WaitForSeconds(attackDuration);
 
         isAttacking = false;
+        animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = false;
     }
 

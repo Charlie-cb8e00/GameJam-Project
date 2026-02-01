@@ -14,6 +14,7 @@ public class Enemy_1 : MonoBehaviour
     private NavMeshAgent agent;
     private float lastAttackTime;
     private bool isAttacking = false;
+    public Animator animator;
 
     void Start()
     {
@@ -43,15 +44,16 @@ public class Enemy_1 : MonoBehaviour
     IEnumerator MeleeAttack()
     {
         isAttacking = true;
-
+        animator.SetBool("isAttacking", isAttacking);
         agent.isStopped = true;
 
         jugador.GetComponent<PlayerHealth>().TakeDamage(damage);
-        Debug.Log("Jugador recibe " + damage + " de daño por enemigo melee.");
+        Debug.Log("Jugador recibe " + damage + " de daï¿½o por enemigo melee.");
 
         yield return new WaitForSeconds(attackDuration);
-
         isAttacking = false;
+        animator.SetBool("isAttacking", isAttacking);
+
         agent.isStopped = false;
     }
 

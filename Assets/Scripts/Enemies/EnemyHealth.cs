@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 1; 
+    public int maxHealth = 1;
     public int currentHealth;
+    public bool isHurt = false;
+    public Animator animator;
 
     void Awake()
     {
-        currentHealth = maxHealth; 
+        currentHealth = maxHealth;
     }
 
-    
+
     public void TakeDamage(int damage = 1)
     {
         currentHealth -= damage;
-        Debug.Log(gameObject.name + " ha recibido " + damage + " de daño. Vida restante: " + currentHealth);
+        isHurt = true;
+        animator.SetBool("isHurt", isHurt);
+        StartCoroutine(hurtCooldown());
+        Debug.Log(gameObject.name + " ha recibido " + damage + " de daï¿½o. Vida restante: " + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -28,6 +33,13 @@ public class EnemyHealth : MonoBehaviour
     {
         Debug.Log(gameObject.name + " ha muerto.");
         Destroy(gameObject);
+    }
+    IEnumerator hurtCooldown()
+    {
+        yield return new WaitForSeconds(.5f);
+        isHurt = false;
+        animator.SetBool("isHurt", isHurt);
+        Debug.Log(isHurt);
     }
 
 }
