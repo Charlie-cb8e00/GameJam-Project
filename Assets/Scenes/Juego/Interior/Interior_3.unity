@@ -5095,7 +5095,7 @@ Transform:
   m_GameObject: {fileID: 610907373}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.49, y: 0, z: 1.87}
+  m_LocalPosition: {x: 0.49, y: 0.56, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5165,6 +5165,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1000212086}
   m_SourcePrefab: {fileID: 100100000, guid: 46debfc83431f2b4795cf211638c2cfd, type: 3}
+--- !u!1 &779993273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 779993274}
+  m_Layer: 0
+  m_Name: -----ETO VA JUNTO-----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &779993274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779993273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4001902, y: 3.5388627, z: -6.058225}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1000212085 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 46debfc83431f2b4795cf211638c2cfd, type: 3}
@@ -5312,6 +5343,7 @@ MonoBehaviour:
   currentHealth: 0
   isHurt: 0
   animator: {fileID: 0}
+  barraVida: {fileID: 0}
 --- !u!114 &1038283634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5810,5 +5842,6 @@ SceneRoots:
   - {fileID: 1038283632}
   - {fileID: 311427176}
   - {fileID: 1413195395}
+  - {fileID: 779993274}
   - {fileID: 668086602}
   - {fileID: 610907376}
