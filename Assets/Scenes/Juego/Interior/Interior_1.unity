@@ -12136,12 +12136,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.3976517, y: 3.062768, z: 4.259193}
-  m_Center: {x: 0.11545944, y: -0.18170144, z: -0.08359814}
+  m_Size: {x: 3.3976517, y: 3.062768, z: 6.162473}
+  m_Center: {x: 0.11545944, y: -0.18170144, z: -1.0352585}
 --- !u!114 &1650813215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12154,7 +12154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a254d05da7b83494181d86dfe0fab30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationAxis: {x: 0, y: 0, z: 1}
   rotationSpeed: 50
   floatSpeed: 2
   floatHeight: 0.25
@@ -12188,7 +12188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dce62682d2ab8e74883b6447e1ec4e66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 44.86
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dce62682d2ab8e74883b6447e1ec4e66, type: 3}
       propertyPath: m_LocalRotation.w
