@@ -10,12 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 1408435159052755239}
   - component: {fileID: 9127542268750322011}
-  - component: {fileID: 1501055873441800652}
   - component: {fileID: 1067623772632389034}
   - component: {fileID: 1977200073230562078}
   - component: {fileID: -1100645505205255834}
+<<<<<<< Updated upstream
   - component: {fileID: 4274796367593817441}
   - component: {fileID: 6392250152652430785}
+=======
+  - component: {fileID: 4278502839414913798}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Enemigo1
   m_TagString: Untagged
@@ -61,6 +64,7 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!114 &1501055873441800652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +81,8 @@ MonoBehaviour:
   currentHealth: 0
   isHurt: 0
   animator: {fileID: 4274796367593817441}
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1067623772632389034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,15 +150,21 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+<<<<<<< Updated upstream
 --- !u!95 &4274796367593817441
 Animator:
   serializedVersion: 5
+=======
+--- !u!114 &4278502839414913798
+MonoBehaviour:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2218668510834549036}
   m_Enabled: 1
+<<<<<<< Updated upstream
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f50e5c8aa219e93439c802275896a72b, type: 2}
   m_CullingMode: 0
@@ -217,3 +229,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd9b19fbb209d043a5f165dbb477a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  currentHealth: 0
+>>>>>>> Stashed changes

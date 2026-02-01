@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -20,12 +19,16 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage = 1)
     {
         currentHealth -= damage;
+<<<<<<< Updated upstream
         isHurt = true;
         animator.SetBool("isHurt", isHurt);
         StartCoroutine(hurtCooldown());
         Debug.Log(gameObject.name + " ha recibido " + damage + " de da�o. Vida restante: " + currentHealth);
         //partículas
         //GameObject go = Instantiate(trailGO, this.gameObject.transform.position, Quaternion.identity);
+=======
+        Debug.Log(gameObject.name + " ha recibido " + damage + " de da�o. Vida restante: " + currentHealth);
+>>>>>>> Stashed changes
 
         if (currentHealth <= 0)
         {
