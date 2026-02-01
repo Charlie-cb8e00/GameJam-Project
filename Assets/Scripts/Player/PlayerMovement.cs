@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GetComponent<PlayerDash>()?.IsDashing() ?? false) return;  //para no confligir con el dash
         float horInput = movementInput.x;
         float verInput = movementInput.y;
 

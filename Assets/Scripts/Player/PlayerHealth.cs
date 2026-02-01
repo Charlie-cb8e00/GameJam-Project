@@ -38,13 +38,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 1.5)
         {
             Debug.Log("Jugador muerto");
             SceneManager.LoadScene("Game_Over");
         }
     }
-    
+
     IEnumerator hurtCooldown()
     {
         yield return new WaitForSeconds(.5f);

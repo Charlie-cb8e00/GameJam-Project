@@ -4,19 +4,19 @@ using System.Collections;
 
 public class PlayerDash : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
-    public InputActionReference dashAction;
+    [SerializeField] private PlayerMovement playerMovement;  // ← Arrastra tu PlayerMovement aquí (para acceder a cam e input)
+    [SerializeField] private InputActionReference dashAction;
 
     [SerializeField] private float dashSpeed = 110f;
     [SerializeField] private float dashDuration = 0.1f;
     [SerializeField] private float dashCooldown = 0.9f;
-    [SerializeField] private float invincibilityDuration = 0.18f;  // mismo tiempo que dashDuration o un poco más
+    [SerializeField] private float invincibilityDuration = 0.18f;
     public bool IsInvincible { get; private set; } = false;
 
     private bool isDashing = false;
     private bool onCooldown = false;
 
-    private Rigidbody rb;           // usamos el mismo Rigidbody que ya tienes
+    private Rigidbody rb;
 
     private void Awake()
     {
@@ -24,6 +24,14 @@ public class PlayerDash : MonoBehaviour
         if (rb == null)
         {
             Debug.LogError("Falta Rigidbody en el Player para el Dash");
+        }
+        if (playerMovement == null)
+        {
+            playerMovement = GetComponent<PlayerMovement>();
+            if (playerMovement == null)
+            {
+                Debug.LogError("Falta PlayerMovement en el mismo GameObject o asignado manualmente");
+            }
         }
     }
 
@@ -47,25 +55,33 @@ public class PlayerDash : MonoBehaviour
 
     private void OnDashPerformed(InputAction.CallbackContext context)
     {
-        if (isDashing || onCooldown || rb == null) return;
+        if (isDashing || onCooldown || rb == null || playerMovement == null) return;
 
-        // Obtenemos la dirección actual del input (WASD / joystick)
+        // Leemos el input actual de movimiento (mismo que PlayerMovement)
         Vector2 inputDirection = playerMovement.inputAction.action.ReadValue<Vector2>();
 
         Vector3 dashDirection;
 
-        // Si hay input de movimiento → dash en esa dirección
         if (inputDirection.sqrMagnitude > 0.1f)
         {
-            dashDirection = new Vector3(inputDirection.x, 0f, inputDirection.y).normalized;
+            // ← CAMBIO PRINCIPAL: Dirección RELATIVA A LA CÁMARA (igual que en PlayerMovement)
+            Vector3 camForward = playerMovement.cam.forward;
+            Vector3 camRight = playerMovement.cam.right;
+
+            camForward.y = 0f;
+            camRight.y = 0f;
+
+            camForward.Normalize();
+            camRight.Normalize();
+
+            dashDirection = (camForward * inputDirection.y + camRight * inputDirection.x).normalized;
         }
-        // Si no hay input → dash en la dirección hacia la que está mirando el personaje
         else
         {
-            // Usamos la dirección actual del transform (hacia donde apunta el GameObject)
-            dashDirection = transform.forward.normalized;
-
-            //Otra opción:  dashDirection = new Vector3(Mathf.Sign(transform.localScale.x), 0f, 0f);
+            // Sin input → dash hacia donde mira la cámara (horizontal)
+            Vector3 camForward = playerMovement.cam.forward;
+            camForward.y = 0f;
+            dashDirection = camForward.normalized;
         }
 
         StartCoroutine(PerformDash(dashDirection));
@@ -75,7 +91,7 @@ public class PlayerDash : MonoBehaviour
     {
         isDashing = true;
         onCooldown = true;
-        IsInvincible = true;   // ← activamos invencibilidad
+        IsInvincible = true;
 
         float originalDrag = rb.drag;
         rb.drag = 0f;
@@ -94,19 +110,17 @@ public class PlayerDash : MonoBehaviour
 
         isDashing = false;
 
-        // Esperamos el resto del tiempo de invencibilidad si es más largo que el dash
         float remainingInvincibility = invincibilityDuration - dashDuration;
         if (remainingInvincibility > 0)
         {
             yield return new WaitForSeconds(remainingInvincibility);
         }
 
-        IsInvincible = false;   // ← terminamos invencibilidad
+        IsInvincible = false;
 
         yield return new WaitForSeconds(dashCooldown);
         onCooldown = false;
     }
 
-    // Métodos públicos útiles para otros scripts
     public bool IsDashing() => isDashing;
 }

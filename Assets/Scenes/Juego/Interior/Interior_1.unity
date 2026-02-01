@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Value
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2858075363494231666, guid: 53e1bc3720f7a9248811ed0bccf38fec, type: 3}
+      propertyPath: gradient.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6935957548732327728, guid: 53e1bc3720f7a9248811ed0bccf38fec, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -152,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6935957548732327728, guid: 53e1bc3720f7a9248811ed0bccf38fec, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 29.469
+      value: 29.468994
       objectReference: {fileID: 0}
     - target: {fileID: 7002446451271016773, guid: 53e1bc3720f7a9248811ed0bccf38fec, type: 3}
       propertyPath: m_Pivot.x
@@ -347,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2555876962263692060, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: dashSpeed
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2677091100387222815, guid: a46743d84b6f9f144834034ae6915ef1, type: 3}
       propertyPath: animator
